@@ -46,6 +46,14 @@ const playGame = (playerSelection , computerSelection) => {
     }
 };
 
-const playerSelection = 'rock';
-const computerSelection = getComputerChoice();
-console.log(playGame(playerSelection, computerSelection));
+// const playerSelection = 'rock';
+// const computerSelection = getComputerChoice();
+// console.log(playGame(playerSelection, computerSelection));
+const newGame = (playerSelection , computerSelection) => {
+    for (let i = 0; i < 5; i++){
+        let computerSelection = getComputerChoice(); 
+        const playerSelection = prompt('Pick rock, paper or scissors');
+        console.log(playGame(playerSelection, computerSelection));
+    }
+}
+newGame();

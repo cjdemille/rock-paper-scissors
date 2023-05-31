@@ -1,3 +1,9 @@
+const rockSelect = document.getElementById('rock');
+const paperSelect = document.getElementById('paper');
+const scissorsSelect = document.getElementById('scissors');
+
+const resultDiv = document.getElementById('result');
+
 const getComputerChoice = () =>{
     const num = Math.floor(Math.random()* 3);
     let choice;
@@ -11,49 +17,63 @@ const getComputerChoice = () =>{
     return choice;
 };
 
-const playGame = (playerSelection , computerSelection) => {
-    playerSelection = playerSelection.toLowerCase();
+const playGame = (playerSelection) => {
+    const computerSelection = getComputerChoice();
+    let resultText;
     if (playerSelection === 'rock'){
         if (computerSelection === 'rock'){
-            return `It's a tie.`;
+            resultText = `It's a tie.`;
         } else if(computerSelection === 'paper'){
-            return `Paper covers rock. You lose.`;
+            resultText = `Paper covers rock. You lose.`;
         } else if (computerSelection === 'scissors'){
-            return 'Rock breaks scissors. You win!';
+            resultText = 'Rock breaks scissors. You win!';
         }
+   
 
     } else if(playerSelection === 'paper'){
         if (computerSelection === 'paper'){
-            return `It's a tie.`;
+            resultText = `It's a tie.`;
         } else if(computerSelection === 'scissors'){
-            return `Scissors cut paper. You lose.`;
+            resultText = `Scissors cut paper. You lose.`;
         } else if (computerSelection === 'rock'){
-            return 'Paper covers rock. You win!';
+            resultText = 'Paper covers rock. You win!';
         }
 
     } else if (playerSelection === 'scissors'){
 
-        if (computerSelection === 'scisors'){
-            return `It's a tie.`;
+        if (computerSelection === 'scissors'){
+            resultText = `It's a tie.`;
         } else if(computerSelection === 'rock'){
-            return `Rock breaks scissors. You lose.`;
+            resultText = `Rock breaks scissors. You lose.`;
         } else if (computerSelection === 'paper'){
-            return 'Scissors cut paper. You win!';
+            resultText = 'Scissors cut paper. You win!';
         }
 
     } else{
         console.error(`Please enter 'rock', 'paper', or 'scissors.'`);
     }
+
+    let result = document.createElement("p");
+    result.innerText = resultText
+    resultDiv.append(result);
+
+
+
+
+
 };
+
+rockSelect.addEventListener('click', function(){
+    playGame('rock');
+});
+paperSelect.addEventListener('click', function(){
+    playGame('paper');
+});
+scissorsSelect.addEventListener('click', function(){
+    playGame('scissors');
+});
 
 // const playerSelection = 'rock';
 // const computerSelection = getComputerChoice();
 // console.log(playGame(playerSelection, computerSelection));
-const newGame = (playerSelection , computerSelection) => {
-    for (let i = 0; i < 5; i++){
-        let computerSelection = getComputerChoice(); 
-        const playerSelection = prompt('Pick rock, paper or scissors');
-        console.log(playGame(playerSelection, computerSelection));
-    }
-}
-newGame();
+
